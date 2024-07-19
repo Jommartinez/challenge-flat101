@@ -44,33 +44,55 @@ export interface Character {
 
 interface StoreState {
   episodes: Episode[]
+  currentPageEpisode: number
+  nextPageEpisode: string | null
+  prevPageEpisode: string | null
   locations: Location[]
+  currentPageLocation: number
+  nextPageLocation: string | null
+  prevPageLocation: string | null
   characters: Character[]
-  fetchEpisodes: () => Promise<void>
-  fetchLocations: () => Promise<void>
+  fetchEpisodes: (page?: number) => Promise<void>
+  fetchLocations: (page?: number) => Promise<void>
   fetchCharacters: (urls: string[]) => Promise<void>
 }
 
 const useStore = create<StoreState>(set => ({
   episodes: [],
+  currentPageEpisode: 1,
+  nextPageEpisode: null,
+  prevPageEpisode: null,
   locations: [],
+  currentPageLocation: 1,
+  nextPageLocation: null,
+  prevPageLocation: null,
   characters: [],
-  fetchEpisodes: async () => {
+  fetchEpisodes: async (page = 1) => {
     try {
       const response = await axios.get(
-        'https://rickandmortyapi.com/api/episode',
+        `https://rickandmortyapi.com/api/episode?page=${page}`,
       )
-      set({ episodes: response.data.results })
+      set({
+        episodes: response.data.results,
+        currentPageEpisode: page,
+        nextPageEpisode: response.data.info.next,
+        prevPageEpisode: response.data.info.prev,
+      })
     } catch (error) {
       console.error('Error fetching list episodes', error)
     }
   },
-  fetchLocations: async () => {
+  fetchLocations: async (page = 1) => {
     try {
       const response = await axios.get(
-        'https://rickandmortyapi.com/api/location',
+        `https://rickandmortyapi.com/api/location?page=${page}`,
       )
-      set({ locations: response.data.results })
+      set({
+        locations: response.data.results,
+        currentPageLocation: page,
+        nextPageLocation: response.data.info.next,
+        prevPageLocation: response.data.info.prev,
+      })
     } catch (error) {
       console.error('Error fetching list locations', error)
     }
