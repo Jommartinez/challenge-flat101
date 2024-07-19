@@ -10,7 +10,7 @@ export const InputSearch = ({
   return (
     <input
       type="text"
-      placeholder="Search..."
+      placeholder="Buscar..."
       value={localSearchTerm}
       onChange={handleSearch}
     />

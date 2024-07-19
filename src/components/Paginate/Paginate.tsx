@@ -16,10 +16,10 @@ export const Paginate = ({
   return (
     <div>
       <button onClick={onClickPrev} disabled={disabledPrev}>
-        <ArrowLeft size={16} /> Previous
+        <ArrowLeft size={16} /> Anterior
       </button>
       <button onClick={onClickNext} disabled={disabledNext}>
-        Next <ArrowRight size={16} />
+        Siguiente <ArrowRight size={16} />
       </button>
     </div>
   )
