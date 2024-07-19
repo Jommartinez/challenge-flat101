@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { FormInput } from '../FormInput/FormInput'
 
 const FormSchema = z.object({
   name: z.string().min(1, 'El nombre es obligatorio'),
@@ -32,28 +33,31 @@ export const Form = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    })
-      .then(response => response.json())
-      .then(json => console.log(json))
+    }).then(response => response.json())
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor="name">Nombre:</label>
-        <input id="name" {...register('name')} />
-        {errors.name && <p>{errors.name.message}</p>}
-      </div>
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input id="email" type="email" {...register('email')} />
-        {errors.email && <p>{errors.email.message}</p>}
-      </div>
-      <div>
-        <label htmlFor="comment">Comentario:</label>
-        <textarea id="comment" {...register('comment')} />
-        {errors.comment && <p>{errors.comment.message}</p>}
-      </div>
+      <FormInput
+        id="name"
+        label="Nombre"
+        register={register}
+        error={errors.name?.message}
+      />
+      <FormInput
+        id="email"
+        label="Email"
+        type="email"
+        register={register}
+        error={errors.email?.message}
+      />
+      <FormInput
+        id="comment"
+        label="Comentario"
+        type="textarea"
+        register={register}
+        error={errors.comment?.message}
+      />
       <button type="submit">Enviar</button>
     </form>
   )

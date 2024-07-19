@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import useStore, { Character, Episode } from '../store/useStore'
-import { Form } from '../components'
+import { Carousel, Form } from '../components'
 
 export const EpisodeDetail = () => {
   const location = useLocation()
@@ -40,14 +40,7 @@ export const EpisodeDetail = () => {
       </div>
       <div>{infoEpisode.air_date}</div>
       <div>Personajes</div>
-      <div>
-        {characters.map((character, index) => (
-          <div key={`${character.id}-${index}`}>
-            <img src={character.image} alt={character.name} />
-            <p>Name: {character.name}</p>
-          </div>
-        ))}
-      </div>
+      <Carousel characters={characters} />
       <Form />
     </>
   )

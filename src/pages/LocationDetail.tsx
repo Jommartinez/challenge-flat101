@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import useStore, { Character, Location } from '../store/useStore'
+import { Carousel } from '../components'
 
 export const LocationDetail = () => {
   const location = useLocation()
@@ -37,15 +38,7 @@ export const LocationDetail = () => {
       <div>{infoLocation.name}</div>
       <div>{infoLocation.dimension}</div>
       <div>Habitantes</div>
-      <div>
-        {characters.map((character, index) => (
-          <div key={`${character.id}-${index}`}>
-            <img src={character.image} alt={character.name} />
-
-            <p>Name: {character.name}</p>
-          </div>
-        ))}
-      </div>
+      <Carousel characters={characters} />
     </>
   )
 }

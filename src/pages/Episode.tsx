@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import useStore from '../store/useStore'
-import { NavLink } from 'react-router-dom'
+import { ListItems, Paginate } from '../components'
 
 export const Episode = () => {
   const {
@@ -28,22 +28,13 @@ export const Episode = () => {
 
   return (
     <div>
-      {episodes.map(episode => (
-        <NavLink state={episode} to={`/episode/${episode.id}`} key={episode.id}>
-          <h3>{episode.episode}</h3>
-          <h2>{episode.name}</h2>
-          <p>{episode.air_date}</p>
-          <hr />
-        </NavLink>
-      ))}
-      <div>
-        <button onClick={handlePrevPage} disabled={!prevPageEpisode}>
-          Previous
-        </button>
-        <button onClick={handleNextPage} disabled={!nextPageEpisode}>
-          Next
-        </button>
-      </div>
+      <ListItems items={episodes} />
+      <Paginate
+        onClickPrev={handlePrevPage}
+        onClickNext={handleNextPage}
+        disabledPrev={!prevPageEpisode}
+        disabledNext={!nextPageEpisode}
+      />
     </div>
   )
 }

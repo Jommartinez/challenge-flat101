@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
-import { Navbar } from '../Navbar/Navbar'
 import useStore from '../../store/useStore'
+import { HeaderMain } from '../Header/HeaderMain'
 
 export const Layout = () => {
   const { pathname } = useLocation()
@@ -35,15 +35,11 @@ export const Layout = () => {
 
   return (
     <>
-      <div>
-        <Navbar />
-        <input
-          type="text"
-          placeholder="Search..."
-          value={localSearchTerm}
-          onChange={handleSearch}
-        />
-      </div>
+      <HeaderMain
+        handleSearch={handleSearch}
+        localSearchTerm={localSearchTerm}
+      />
+
       <Outlet />
     </>
   )

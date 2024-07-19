@@ -1,2 +1,8 @@
 export { Layout } from './Layout/Layout'
+export { Logo } from './Logo/Logo'
 export { Form } from './Form/Form'
+export { ListItems } from './ListItems/ListItems'
+export { Item } from './Item/Item'
+export { Paginate } from './Paginate/Paginate'
+export { Carousel } from './Carousel/Carousel'
+export { FormInput } from './FormInput/FormInput'

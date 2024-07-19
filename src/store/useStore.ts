@@ -1,5 +1,4 @@
 import { create } from 'zustand'
-import axios from 'axios'
 import { fetchEpisodes, fetchLocations, fetchCharacters } from '../api'
 
 export interface Episode {

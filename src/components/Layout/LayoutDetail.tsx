@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
+import { HeaderDetail } from '../Header/HeaderDetail'
 
 export const LayoutDetail = () => {
   const [name, setName] = useState('')
@@ -15,10 +16,7 @@ export const LayoutDetail = () => {
 
   return (
     <>
-      <div>
-        <p>Return</p>
-        <p>{name}</p>
-      </div>
+      <HeaderDetail name={name} />
       <Outlet />
     </>
   )
