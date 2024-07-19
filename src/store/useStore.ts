@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import axios from 'axios'
+import { fetchEpisodes, fetchLocations, fetchCharacters } from '../api'
 
 export interface Episode {
   id: number
@@ -75,50 +76,28 @@ const useStore = create<StoreState>(set => ({
   searchTermLocation: '',
   fetchEpisodes: async (page = 1, searchTerm = '') => {
     try {
-      const response = await axios.get(
-        `https://rickandmortyapi.com/api/episode?page=${page}&name=${searchTerm}`,
-      )
-      set({
-        episodes: response.data.results,
-        currentPageEpisode: page,
-        nextPageEpisode: response.data.info.next,
-        prevPageEpisode: response.data.info.prev,
-      })
+      const data = await fetchEpisodes(page, searchTerm)
+      set(data)
     } catch (error) {
-      console.error('Error fetching list episodes', error)
+      console.error('Error fetching episodes', error)
     }
   },
   fetchLocations: async (page = 1, searchTerm = '') => {
     try {
-      const response = await axios.get(
-        `https://rickandmortyapi.com/api/location?page=${page}&name=${searchTerm}`,
-      )
-      set({
-        locations: response.data.results,
-        currentPageLocation: page,
-        nextPageLocation: response.data.info.next,
-        prevPageLocation: response.data.info.prev,
-      })
+      const data = await fetchLocations(page, searchTerm)
+      set(data)
     } catch (error) {
-      console.error('Error fetching list locations', error)
+      console.error('Error fetching locations', error)
     }
   },
   fetchCharacters: async (urls: string[]) => {
     try {
-      const urlsFilter = [...new Set(urls)]
-      const ids = urlsFilter.map(url => url.split('/').pop()).join(',')
-      const response = await axios.get(
-        `https://rickandmortyapi.com/api/character/${ids}`,
-      )
-      const characters = Array.isArray(response.data)
-        ? response.data
-        : [response.data]
-
+      const characters = await fetchCharacters(urls)
       set(state => ({
-        characters: { ...state.characters, ...characters },
+        characters: [...state.characters, ...characters],
       }))
     } catch (error) {
-      console.error('Error fetching list characters', error)
+      console.error('Error fetching characters', error)
     }
   },
   setSearchTermEpisode: (searchTerm: string) =>
