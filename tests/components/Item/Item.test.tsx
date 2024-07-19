@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { describe, test, expect, vi } from 'vitest'
-import { Item } from '../../../components'
+import { Item } from '../../../src/components'
 
 vi.mock('react-router-dom', () => ({
   NavLink: ({ children }: any) => <div>{children}</div>,

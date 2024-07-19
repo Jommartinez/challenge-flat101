@@ -1,8 +1,8 @@
 import { describe, test, expect, vi } from 'vitest'
-import axios from '../../libs/axios'
-import { fetchEpisodes } from '../../api'
+import axios from '../../src/libs/axios'
+import { fetchEpisodes } from '../../src/api'
 
-vi.mock('../../libs/axios')
+vi.mock('../../src/libs/axios')
 
 describe('fetchEpisodes', () => {
   test('fetches episodes successfully', async () => {

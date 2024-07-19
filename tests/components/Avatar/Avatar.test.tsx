@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { describe, expect, test } from 'vitest'
-import { Avatar } from '../../../components'
+import { Avatar } from '../../../src/components'
 
 const mockCharacter = {
   id: 2,

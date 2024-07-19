@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import '@testing-library/jest-dom'
-import { Form } from '../../../components'
+import { Form } from '../../../src/components'
 import { describe, expect, test } from 'vitest'
 
 describe('Form Component', () => {

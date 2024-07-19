@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { describe, test, expect, vi } from 'vitest'
-import { Paginate } from '../../../components'
+import { Paginate } from '../../../src/components'
 
 describe('Paginate Component', () => {
   test('renders buttons correctly', () => {

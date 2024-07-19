@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { describe, test, expect, vi } from 'vitest'
-import { InputSearch } from '../../../components/InputSearch/InputSearch'
+import { InputSearch } from '../../../src/components/InputSearch/InputSearch'
 
 describe('InputSearch Component', () => {
   test('renders input with correct placeholder and value', () => {

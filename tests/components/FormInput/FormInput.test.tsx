@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { describe, test, expect, vi } from 'vitest'
-import { FormInput } from '../../../components'
+import { FormInput } from '../../../src/components'
 
 describe('FormInput Component', () => {
   const mockRegister = vi.fn()

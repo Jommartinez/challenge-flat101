@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { useNavigate } from 'react-router-dom'
 import { describe, expect, test, vi } from 'vitest'
-import { HeaderDetail } from '../../../components'
+import { HeaderDetail } from '../../../src/components'
 
 vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(),
