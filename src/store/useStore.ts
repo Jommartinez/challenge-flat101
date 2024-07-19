@@ -52,9 +52,13 @@ interface StoreState {
   nextPageLocation: string | null
   prevPageLocation: string | null
   characters: Character[]
-  fetchEpisodes: (page?: number) => Promise<void>
-  fetchLocations: (page?: number) => Promise<void>
+  searchTermEpisode: string
+  searchTermLocation: string
+  fetchEpisodes: (page?: number, name?: string) => Promise<void>
+  fetchLocations: (page?: number, name?: string) => Promise<void>
   fetchCharacters: (urls: string[]) => Promise<void>
+  setSearchTermEpisode: (searchTerm: string) => void
+  setSearchTermLocation: (searchTerm: string) => void
 }
 
 const useStore = create<StoreState>(set => ({
@@ -67,10 +71,12 @@ const useStore = create<StoreState>(set => ({
   nextPageLocation: null,
   prevPageLocation: null,
   characters: [],
-  fetchEpisodes: async (page = 1) => {
+  searchTermEpisode: '',
+  searchTermLocation: '',
+  fetchEpisodes: async (page = 1, searchTerm = '') => {
     try {
       const response = await axios.get(
-        `https://rickandmortyapi.com/api/episode?page=${page}`,
+        `https://rickandmortyapi.com/api/episode?page=${page}&name=${searchTerm}`,
       )
       set({
         episodes: response.data.results,
@@ -82,10 +88,10 @@ const useStore = create<StoreState>(set => ({
       console.error('Error fetching list episodes', error)
     }
   },
-  fetchLocations: async (page = 1) => {
+  fetchLocations: async (page = 1, searchTerm = '') => {
     try {
       const response = await axios.get(
-        `https://rickandmortyapi.com/api/location?page=${page}`,
+        `https://rickandmortyapi.com/api/location?page=${page}&name=${searchTerm}`,
       )
       set({
         locations: response.data.results,
@@ -115,6 +121,10 @@ const useStore = create<StoreState>(set => ({
       console.error('Error fetching list characters', error)
     }
   },
+  setSearchTermEpisode: (searchTerm: string) =>
+    set({ searchTermEpisode: searchTerm }),
+  setSearchTermLocation: (searchTerm: string) =>
+    set({ searchTermLocation: searchTerm }),
 }))
 
 export default useStore

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import useStore, { Character, Episode } from '../store/useStore'
+import { Form } from '../components'
 
 export const EpisodeDetail = () => {
   const location = useLocation()
@@ -47,6 +48,7 @@ export const EpisodeDetail = () => {
           </div>
         ))}
       </div>
+      <Form />
     </>
   )
 }
