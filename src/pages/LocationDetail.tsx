@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import useStore, { Character, Location } from '../store/useStore'
 import { Carousel } from '../components'
 
 export const LocationDetail = () => {
   const location = useLocation()
+  const navigate = useNavigate()
   const [infoLocation, setInfoLocation] = useState<Location>()
   const [characters, setCharacters] = useState<Character[]>([])
 
@@ -16,6 +17,8 @@ export const LocationDetail = () => {
       setInfoLocation(data)
       fetchCharacters(data.residents)
       return
+    } else {
+      navigate('/location')
     }
   }, [location.state, fetchCharacters])
 

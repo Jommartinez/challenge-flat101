@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import useStore, { Character, Episode } from '../store/useStore'
 import { Carousel, Form } from '../components'
 
 export const EpisodeDetail = () => {
   const location = useLocation()
+  const navigate = useNavigate()
   const [infoEpisode, setInfoEpisode] = useState<Episode>()
   const [characters, setCharacters] = useState<Character[]>([])
 
@@ -16,6 +17,8 @@ export const EpisodeDetail = () => {
       setInfoEpisode(data)
       fetchCharacters(data.characters)
       return
+    } else {
+      navigate('/episode')
     }
   }, [location.state, fetchCharacters])
 
