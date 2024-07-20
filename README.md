@@ -44,7 +44,3 @@ Para ejecutar los test utilizamos el siguiente comando
 > ```console
 > $ npm run test
 > ```
-
-## Demo
-
-El proyecto se puede ver desplegado en la siguiente url: https://challenge-flat101.netlify.app/
