@@ -47,4 +47,4 @@ Para ejecutar los test utilizamos el siguiente comando
 
 ## Demo
 
-El proyecto se puede ver desplegado en la siguiente url: https://challenge-flat101.vercel.app/
+El proyecto se puede ver desplegado en la siguiente url: https://challenge-flat101.netlify.app/
