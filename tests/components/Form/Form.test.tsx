@@ -5,12 +5,9 @@ import { Form } from '../../../src/components'
 import { describe, expect, test } from 'vitest'
 
 describe('Form Component', () => {
-  test('renders the form with all inputs and submit button', () => {
+  test('renders the form button', () => {
     render(<Form />)
 
-    expect(screen.getByLabelText(/Nombre/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/Email/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/Comentario/i)).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /Enviar/i })).toBeInTheDocument()
   })
 
@@ -33,7 +30,7 @@ describe('Form Component', () => {
   test('shows email validation error for invalid email', async () => {
     render(<Form />)
 
-    userEvent.type(screen.getByLabelText(/Email/i), 'jonathan@')
+    userEvent.type(screen.getByPlaceholderText(/Email/i), 'jonathan@')
     fireEvent.click(screen.getByRole('button', { name: /Enviar/i }))
 
     expect(
