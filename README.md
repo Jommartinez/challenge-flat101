@@ -47,4 +47,4 @@ Para ejecutar los test utilizamos el siguiente comando
 
 ## Demo
 
-El proyecto se puede ver desplegado en la siguiente url: https://pendiente.com
+El proyecto se puede ver desplegado en la siguiente url: https://challenge-flat101.vercel.app/
