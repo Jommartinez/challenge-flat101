@@ -1,0 +1,17 @@
+.carousel {
+  display: flex;
+  gap: 2.625rem;
+  overflow-x: auto;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+  background: var(--color-secondary);
+}
+
+.carousel::-webkit-scrollbar-track {
+  background: white;
+}
+
+.carousel::-webkit-scrollbar {
+  height: 0.25rem;
+}

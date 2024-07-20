@@ -1,0 +1,24 @@
+.paginate {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  max-width: 51.25rem;
+  margin: 0 auto;
+  padding: 2.5rem 0.75rem 1rem;
+}
+
+.paginate__button {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  background-color: transparent;
+  text-transform: uppercase;
+  border: none;
+  color: var(--color-secondary);
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+.paginate__button:disabled {
+  color: var(--text-light);
+}

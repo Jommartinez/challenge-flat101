@@ -5,6 +5,8 @@ import { FormInput } from '../FormInput/FormInput'
 import axios from 'axios'
 import { useState } from 'react'
 
+import './Form.css'
+
 const FormSchema = z.object({
   name: z.string().min(1, 'El nombre es obligatorio'),
   email: z
@@ -14,7 +16,7 @@ const FormSchema = z.object({
   comment: z
     .string()
     .max(500, 'El comentario no puede exceder los 500 caracteres')
-    .min(1, 'El cmentario es obligatorio'),
+    .min(1, 'El comentario es obligatorio'),
 })
 
 type FormData = z.infer<typeof FormSchema>
@@ -42,7 +44,7 @@ export const Form = () => {
         },
       )
       console.log(response.data)
-      setMessage('Comentario enviado')
+      setMessage('Tu comentario ha sido enviado con éxito')
       reset()
     } catch (error) {
       console.error('Error al enviar el formulario', error)
@@ -50,29 +52,35 @@ export const Form = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <FormInput
-        id="name"
-        label="Nombre"
-        register={register}
-        error={errors.name?.message}
-      />
-      <FormInput
-        id="email"
-        label="Email"
-        type="email"
-        register={register}
-        error={errors.email?.message}
-      />
-      <FormInput
-        id="comment"
-        label="Comentario"
-        type="textarea"
-        register={register}
-        error={errors.comment?.message}
-      />
-      {message && <p>{message}</p>}
-      <button type="submit">Enviar</button>
-    </form>
+    <>
+      <div className="detail__title-carousel">Comentarios</div>
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
+        <FormInput
+          id="name"
+          placeholder="Tu nombre"
+          register={register}
+          error={errors.name?.message}
+        />
+        <FormInput
+          id="email"
+          placeholder="Tu email"
+          type="email"
+          register={register}
+          error={errors.email?.message}
+        />
+        <FormInput
+          id="comment"
+          placeholder="Comentario (max. 500 caracteres)"
+          type="textarea"
+          register={register}
+          error={errors.comment?.message}
+        />
+
+        <button className="form__button" type="submit">
+          Enviar
+        </button>
+        {message && <p className="form__success">{message}</p>}
+      </form>
+    </>
   )
 }

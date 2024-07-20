@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import useStore, { Character, Episode } from '../store/useStore'
 import { Carousel, Form } from '../components'
 
+import './Detail.css'
+
 export const EpisodeDetail = () => {
   const location = useLocation()
   const navigate = useNavigate()
@@ -28,7 +30,12 @@ export const EpisodeDetail = () => {
       const episodeCharacters = charactersArray.filter(character =>
         infoEpisode.characters.includes(character.url),
       )
-      setCharacters(episodeCharacters)
+      const uniqueCharacters = Array.from(
+        new Map(
+          episodeCharacters.map(character => [character.id, character]),
+        ).values(),
+      )
+      setCharacters(uniqueCharacters)
     }
   }, [infoEpisode, storeCharacters])
 
@@ -37,14 +44,14 @@ export const EpisodeDetail = () => {
   }
 
   return (
-    <>
-      <div>
+    <div className="detail">
+      <div className="detail__title">
         {infoEpisode.episode}: {infoEpisode.name}
       </div>
-      <div>{infoEpisode.air_date}</div>
-      <div>Personajes</div>
+      <div className="detail__subtitle">{infoEpisode.air_date}</div>
+      <div className="detail__title-carousel">Personajes</div>
       <Carousel characters={characters} />
       <Form />
-    </>
+    </div>
   )
 }

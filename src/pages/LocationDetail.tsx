@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import useStore, { Character, Location } from '../store/useStore'
 import { Carousel } from '../components'
 
+import './Detail.css'
+
 export const LocationDetail = () => {
   const location = useLocation()
   const navigate = useNavigate()
@@ -28,20 +30,29 @@ export const LocationDetail = () => {
       const episodeCharacters = charactersArray.filter(character =>
         infoLocation.residents.includes(character.url),
       )
-      setCharacters(episodeCharacters)
+      const uniqueCharacters = Array.from(
+        new Map(
+          episodeCharacters.map(character => [character.id, character]),
+        ).values(),
+      )
+      setCharacters(uniqueCharacters)
     }
   }, [infoLocation, storeCharacters])
+
+  useEffect(() => {
+    console.log('characters', characters)
+  }, [characters])
 
   if (!infoLocation) {
     return null
   }
 
   return (
-    <>
-      <div>{infoLocation.name}</div>
-      <div>{infoLocation.dimension}</div>
-      <div>Habitantes</div>
+    <div className="detail">
+      <div className="detail__title">{infoLocation.name}</div>
+      <div className="detail__subtitle">{infoLocation.dimension}</div>
+      <div className="detail__title-carousel">Habitantes</div>
       <Carousel characters={characters} />
-    </>
+    </div>
   )
 }

@@ -1,4 +1,5 @@
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import './Paginate.css'
 
 interface PaginateProps {
   onClickPrev: () => void
@@ -14,11 +15,19 @@ export const Paginate = ({
   disabledNext,
 }: PaginateProps) => {
   return (
-    <div>
-      <button onClick={onClickPrev} disabled={disabledPrev}>
+    <div className="paginate">
+      <button
+        className="paginate__button"
+        onClick={onClickPrev}
+        disabled={disabledPrev}
+      >
         <ArrowLeft size={16} /> Anterior
       </button>
-      <button onClick={onClickNext} disabled={disabledNext}>
+      <button
+        className="paginate__button"
+        onClick={onClickNext}
+        disabled={disabledNext}
+      >
         Siguiente <ArrowRight size={16} />
       </button>
     </div>

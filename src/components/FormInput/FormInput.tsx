@@ -1,6 +1,8 @@
+import './FormInput.css'
+
 interface FormInputProps {
   id: string
-  label: string
+  placeholder: string
   type?: string
   register: any
   error?: string
@@ -8,20 +10,30 @@ interface FormInputProps {
 
 export const FormInput = ({
   id,
-  label,
   type = 'text',
   register,
   error,
+  placeholder,
 }: FormInputProps) => {
   return (
     <div>
-      <label htmlFor={id}>{label}</label>
       {type === 'textarea' ? (
-        <textarea id={id} {...register(id)} />
+        <textarea
+          className="input"
+          placeholder={placeholder}
+          id={id}
+          {...register(id)}
+        />
       ) : (
-        <input id={id} type={type} {...register(id)} />
+        <input
+          className="input"
+          placeholder={placeholder}
+          id={id}
+          type={type}
+          {...register(id)}
+        />
       )}
-      {error && <p>{error}</p>}
+      {error && <p className="text-error">{error}</p>}
     </div>
   )
 }

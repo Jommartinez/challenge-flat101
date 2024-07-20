@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  background-color: var(--color-bg-light);
 }
 
 *,
@@ -21,10 +22,13 @@ html {
 }
 
 :root {
-  --color-primary: #ffffff;
-  --color-secondary: #000000;
+  --color-primary: #193840;
+  --color-secondary: #42b4ca;
+  --color-secondary-opacity: rgba(66, 180, 202, 0.75);
+  --color-content: #368fa1;
+  --text-light: #bababa;
   --color-dark: #d9d9d9;
-  --color-light: #f5f5f5;
-
-  --padding-header: 1rem 3rem;
+  --color-bg-light: #f5f5f5;
+  --color-hover: rgba(191, 222, 66, 0.8);
+  --text-error: #e22b2b;
 }

@@ -26,7 +26,7 @@ describe('Form Component', () => {
       await screen.findByText(/El email es obligatorio/i),
     ).toBeInTheDocument()
     expect(
-      await screen.findByText(/El cmentario es obligatorio/i),
+      await screen.findByText(/El comentario es obligatorio/i),
     ).toBeInTheDocument()
   })
 
